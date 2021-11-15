@@ -1,0 +1,16 @@
+.table {
+  margin:10px;
+
+  &-name {
+    font-size: large;
+  }
+
+  .buttons{
+display:flex;
+justify-content: flex-end;
+align-items: center;
+  }
+}
+.col {
+  width: 500px;
+}
