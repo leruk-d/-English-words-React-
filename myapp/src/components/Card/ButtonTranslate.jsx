@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ButtonTranslate.scss";
 
 function ButtonTranslate(props) {
   const [pressed, setPressed] = useState(false);
