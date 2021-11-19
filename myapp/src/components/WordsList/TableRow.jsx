@@ -15,7 +15,7 @@ let words = [
   { id: "gum", english: "gum", transcription: "[ ɡʌm ]", russian: "жвачка" },
 ];
 
-function TableRow(props) {
+function TableRow() {
   return words.map((word, i) => (
     <tr key={word.id}>
       <td>{i === 0 ? <input value={word.english} /> : word.english}</td>

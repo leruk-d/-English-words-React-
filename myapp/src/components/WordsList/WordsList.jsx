@@ -5,7 +5,7 @@ import TableRow from "./TableRow";
 function WordList() {
   return (
     <div className="main_table">
-      <table class="table">
+      <table className="table">
         <caption className="table-name">Words List</caption>
         <thead>
           <tr>
