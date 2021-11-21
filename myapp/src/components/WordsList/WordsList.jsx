@@ -2,6 +2,18 @@ import React from "react";
 import "./WordList.scss";
 import TableRow from "./TableRow";
 
+let words = [
+  { id: "peace", english: "peace", transcription: "[ piːs ]", russian: "мир" },
+  {
+    id: "friendship",
+    english: "friendship",
+    transcription: "[ ˈfrendʃɪp ]",
+    russian: "дружба",
+  },
+
+  { id: "gum", english: "gum", transcription: "[ ɡʌm ]", russian: "жвачка" },
+];
+
 function WordList() {
   return (
     <div className="main_table">
@@ -16,7 +28,14 @@ function WordList() {
           </tr>
         </thead>
         <tbody>
-          <TableRow />
+          {words.map((word) => (
+            <TableRow
+              key={word.id}
+              word={word.english}
+              transcription={word.transcription}
+              translation={word.russian}
+            />
+          ))}
         </tbody>
       </table>
     </div>

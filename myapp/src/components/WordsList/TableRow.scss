@@ -1,5 +1,15 @@
-.buttons {
+.row {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
+
+  &-input,
+  &-word {
+    width: 150px;
+  }
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }

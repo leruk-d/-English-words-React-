@@ -12,7 +12,7 @@ function ButtonTranslate(props) {
       Проверить
     </button>
   ) : (
-    `${props.russian}`
+    <div onClick={handleChange}>{props.russian}</div>
   );
 }
 

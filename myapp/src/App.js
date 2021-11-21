@@ -14,6 +14,7 @@ let words = [
     transcription: "[ ˈfrendʃɪp ]",
     russian: "дружба",
   },
+
   { id: "gum", english: "gum", transcription: "[ ɡʌm ]", russian: "жвачка" },
 ];
 
@@ -33,6 +34,7 @@ function App() {
         ))}
         <ButtonNext />
       </div>
+
       <WordsList className="table" />
     </div>
   );
