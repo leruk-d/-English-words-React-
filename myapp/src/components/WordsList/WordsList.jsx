@@ -21,10 +21,10 @@ function WordList() {
         <caption className="table-name">Words List</caption>
         <thead>
           <tr>
-            <th>Word</th>
-            <th>Transcription</th>
-            <th>Translate</th>
-            <th>Actions</th>
+            <th className="col">Word</th>
+            <th className="col">Transcription</th>
+            <th className="col">Translate</th>
+            <th className="col">Actions</th>
           </tr>
         </thead>
         <tbody>

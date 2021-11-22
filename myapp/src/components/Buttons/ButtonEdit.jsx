@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import "./ButtonEdit.scss";
 
-function ButtonEdit() {
-  const [pressed, setPressed] = useState(false);
-  const handleChange = () => {
-    setPressed(!pressed);
-  };
-
+function ButtonEdit(props) {
   return (
-    <button onClick={handleChange} className="btn-edit">
-      {pressed === true ? "Cancel" : "Edit"}
+    <button onClick={props.onClick} className="btn-edit">
+      {props.pressed === true ? "Cancel" : "Edit"}
     </button>
   );
 }

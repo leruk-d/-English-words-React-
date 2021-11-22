@@ -1,10 +1,14 @@
 .table {
   margin: 10px;
-
   &-name {
     font-size: large;
+    font-weight: bold;
+    margin: 10px;
+    color: rgb(226, 213, 195);
   }
-}
-.col {
-  width: 500px;
+
+  .col {
+    width: 150px;
+    color: rgb(72, 78, 64);
+  }
 }

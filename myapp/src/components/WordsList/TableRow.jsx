@@ -52,7 +52,7 @@ function TableRow(props) {
       )}
       <td>
         <div className="buttons">
-          <ButtonEdit onClick={handleChange} />
+          <ButtonEdit onClick={handleChange} pressed={pressed} />
           <ButtonDel />
         </div>
       </td>

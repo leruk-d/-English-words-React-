@@ -1,24 +1,28 @@
-.header{
-    background-color: #f0fac1;
-    overflow: hidden;
-    color: #e8d2f5;
-    font-size: bold;
+$colorText: #a973b1;
+
+.header {
+  background-color: #ecfaae;
+  overflow: hidden;
+  color: $colorText;
+  font-weight: bold;
+  font-size: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 40px;
+  .menu {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 25px;
-    height:30px;
-.menu{
-    display:flex;
     justify-content: space-between;
     list-style-type: none;
-}
-li{ 
-    margin:10px;
-    
-       a{
-        text-decoration: none;
-        color: #e8d2f5;
-       }
-}
+  }
+  li {
+    margin: 10px;
+
+    a {
+      text-decoration: none;
+      color: $colorText;
+    }
+  }
 }
