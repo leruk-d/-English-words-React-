@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ButtonTranslate.scss";
 
 function ButtonTranslate(props) {
-  const [pressed, setPressed] = useState(false);
-
-  const handleChange = () => {
-    setPressed(!pressed);
-  };
-  return !pressed ? (
-    <button className="button" onClick={handleChange}>
+  return !props.pressed ? (
+    <button className="button" onClick={props.onClick}>
       Проверить
     </button>
   ) : (
-    <div onClick={handleChange}>{props.russian}</div>
+    <div onClick={props.onClick}>{props.russian}</div>
   );
 }
 

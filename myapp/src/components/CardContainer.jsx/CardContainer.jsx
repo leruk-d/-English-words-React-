@@ -5,19 +5,33 @@ import ButtonNext from "../ButtonNext/ButtonNext";
 import "./CardContainer.scss";
 
 const words = [
-  { id: "peace", english: "peace", transcription: "[ piːs ]", russian: "мир" },
+  {
+    id: "peace",
+    english: "peace",
+    transcription: "[ piːs ]",
+    russian: "мир",
+    isTranslationShow: false,
+  },
   {
     id: "friendship",
     english: "friendship",
     transcription: "[ ˈfrendʃɪp ]",
     russian: "дружба",
+    isTranslationShow: false,
   },
 
-  { id: "gum", english: "gum", transcription: "[ ɡʌm ]", russian: "жвачка" },
+  {
+    id: "gum",
+    english: "gum",
+    transcription: "[ ɡʌm ]",
+    russian: "жвачка",
+    isTranslationShow: false,
+  },
 ];
 
 function CardContainer(props) {
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
+  const [data, updateTranslationState] = useState(words);
 
   const handleClickNext = () => {
     const newIdx = selectedCardIndex + 1;
@@ -33,6 +47,13 @@ function CardContainer(props) {
     }
   };
 
+  const handleClickTranslation = () => {
+    const dataCopy = [...data];
+    dataCopy[selectedCardIndex].isTranslationShow =
+      !dataCopy[selectedCardIndex].isTranslationShow;
+    updateTranslationState(dataCopy);
+  };
+
   useEffect(() => {
     console.log(words.length);
   }, []);
@@ -45,6 +66,8 @@ function CardContainer(props) {
           word={words[selectedCardIndex].english}
           transcription={words[selectedCardIndex].transcription}
           translation={words[selectedCardIndex].russian}
+          onClick={handleClickTranslation}
+          isTranslationShown={data[selectedCardIndex].isTranslationShow}
         ></Card>
         <ButtonNext onClick={handleClickNext} />
       </div>
