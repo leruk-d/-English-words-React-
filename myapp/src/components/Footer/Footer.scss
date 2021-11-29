@@ -1,7 +1,14 @@
-.footer{
-    background-color: #f0fac1;
-    color: #e8d2f5;
-    align-items:center;
-    padding-top:30px;
-    height:50px;
+.footer {
+  background-color: #f8f8fa;
+  color: #883a94;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 50px;
+  padding-left: 50px;
+  margin-top: 20px;
+  align-items: center;
+  height: 70px;
+  .text {
+    padding-right: 90px;
+  }
 }

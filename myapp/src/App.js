@@ -1,6 +1,7 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import WordsList from "./components/WordsList/WordsList";
 import CardContainer from "./components/CardContainer/CardContainer";
 import {
@@ -14,21 +15,27 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Router>
-          <Header />
-          <Switch>
-            <Route path="/Words List">
-              <WordsList className="table" />
-            </Route>
-            <Route path="/cards">
-              <CardContainer />
-            </Route>
-            <Route path="/">
-              <WordsList className="table" />
-            </Route>
-          </Switch>
-        </Router>
+        <div className="main">
+          <Router>
+            <Header />
+            <Switch>
+              <Route exact path="/logo">
+                <WordsList className="table" />
+              </Route>
+              <Route exact path="/wordsList">
+                <WordsList className="table" />
+              </Route>
+              <Route exact path="/game">
+                <CardContainer className="card" />
+              </Route>
+              <Route path="/">
+                <WordsList className="table" />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
       </div>
+      <Footer className="footer" />
     </BrowserRouter>
   );
 }

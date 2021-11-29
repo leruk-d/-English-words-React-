@@ -1,0 +1,18 @@
+.App {
+  height: 100%;
+  .main {
+    display: flex;
+    flex-direction: column;
+    .table {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
