@@ -1,7 +1,6 @@
-$colorText: #a973b1;
-
+$colorText: #883a94;
 .header {
-  background-color: #ecfaae;
+  background-color: #f8f8fa;
   overflow: hidden;
   color: $colorText;
   font-weight: bold;
@@ -9,9 +8,11 @@ $colorText: #a973b1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 20px;
-  height: 40px;
+  padding-left: 20px;
+  padding-right: 60px;
+  height: 70px;
   .menu {
     display: flex;
     justify-content: space-between;
@@ -19,6 +20,7 @@ $colorText: #a973b1;
   }
   li {
     margin: 10px;
+    padding: 20px;
 
     a {
       text-decoration: none;

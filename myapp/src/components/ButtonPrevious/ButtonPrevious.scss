@@ -1,6 +1,11 @@
 .prev {
   padding: 10px;
+  background-color: #f8f8fa;
+  border-radius: 9%;
+  color: #883a94;
+  font-size: small;
   &:hover {
     transform: scale(1.2);
+    background-color: #f4e0f5;
   }
 }
