@@ -3,11 +3,12 @@
   color: #883a94;
   display: flex;
   justify-content: space-between;
-  padding-right: 50px;
-  padding-left: 50px;
   margin-top: 20px;
   align-items: center;
   height: 70px;
+  .year {
+    padding-left: 90px;
+  }
   .text {
     padding-right: 90px;
   }
