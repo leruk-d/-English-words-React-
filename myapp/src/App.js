@@ -1,42 +1,42 @@
 import React from "react";
-import "./App.css";
-import Card from "./components/Card/Card";
+import "./App.scss";
 import Header from "./components/Header/Header";
-import ButtonPrevious from "./components/ButtonPrevious/ButtonPrevious";
-import ButtonNext from "./components/ButtonNext/ButtonNext";
+import Footer from "./components/Footer/Footer";
 import WordsList from "./components/WordsList/WordsList";
-
-let words = [
-  { id: "peace", english: "peace", transcription: "[ piːs ]", russian: "мир" },
-  {
-    id: "friendship",
-    english: "friendship",
-    transcription: "[ ˈfrendʃɪp ]",
-    russian: "дружба",
-  },
-
-  { id: "gum", english: "gum", transcription: "[ ɡʌm ]", russian: "жвачка" },
-];
+import CardContainer from "./components/CardContainer/CardContainer";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="App-main">
-        <ButtonPrevious />
-        {words.map((word) => (
-          <Card
-            key={word.id}
-            word={word.english}
-            transcription={word.transcription}
-            translation={word.russian}
-          ></Card>
-        ))}
-        <ButtonNext />
+    <BrowserRouter>
+      <div className="App">
+        <div className="main">
+          <Router>
+            <Header />
+            <Switch>
+              <Route exact path="/logo">
+                <WordsList className="table" />
+              </Route>
+              <Route exact path="/wordsList">
+                <WordsList className="table" />
+              </Route>
+              <Route exact path="/game">
+                <CardContainer className="card" />
+              </Route>
+              <Route path="/">
+                <WordsList className="table" />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
       </div>
-
-      <WordsList className="table" />
-    </div>
+      <Footer className="footer" />
+    </BrowserRouter>
   );
 }
 

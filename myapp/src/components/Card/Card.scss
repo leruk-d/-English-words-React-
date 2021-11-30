@@ -8,6 +8,7 @@ $colorCard: rgb(203, 231, 222);
 }
 
 .card {
+  margin: 20px;
   &:hover {
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);

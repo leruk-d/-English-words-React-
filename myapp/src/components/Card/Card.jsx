@@ -9,7 +9,11 @@ function Card(props) {
         <div className="card-word">{props.word}</div>
         <div className="card-transcription">{props.transcription}</div>
         <div className="card-translation">
-          <ButtonTranslate russian={props.translation} />
+          <ButtonTranslate
+            russian={props.translation}
+            onClick={props.onClick}
+            pressed={props.isTranslationShown}
+          />
         </div>
       </div>
     </div>

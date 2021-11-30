@@ -1,7 +1,12 @@
-import React from 'react';
+import React from "react";
+import "./ButtonNext.scss";
 
 function ButtonNext(props) {
-    return <span>next{props.value}</span>;
+  return (
+    <span className="next" onClick={props.onClick}>
+      next{" "}
+    </span>
+  );
 }
 
 export default ButtonNext;
