@@ -3,9 +3,14 @@ import "./ButtonPrevious.scss";
 
 function ButtonPrevious(props) {
   return (
-    <span className="prev" onClick={props.onClick}>
-      prev
-    </span>
+    <div className="prev">
+      <span
+        className={props.disabled ? "disabled" : ""}
+        onClick={props.onClick}
+      >
+        prev
+      </span>
+    </div>
   );
 }
 

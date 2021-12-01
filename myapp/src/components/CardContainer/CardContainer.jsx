@@ -62,7 +62,6 @@ function CardContainer(props) {
     <div className="cardContainer">
       <div className="oneCard">
         <ButtonPrevious
-          className="disabled"
           onClick={handleClickPrev}
           disabled={selectedCardIndex === 0}
         />
@@ -75,7 +74,6 @@ function CardContainer(props) {
         ></Card>
         <ButtonNext
           onClick={handleClickNext}
-          className="disabled"
           disabled={selectedCardIndex === words.length - 1}
         />
       </div>

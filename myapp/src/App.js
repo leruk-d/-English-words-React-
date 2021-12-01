@@ -20,23 +20,23 @@ function App() {
           <Router>
             <Header />
             <Switch>
-              <Route exact path="/logo">
-                <WordsList className="table" />
+              <Route exact path="/">
+                <WordsList />
               </Route>
               <Route exact path="/wordsList">
-                <WordsList className="table" />
+                <WordsList />
               </Route>
               <Route exact path="/game" component={CardContainer} />
               <Route exact path="/">
-                <WordsList className="table" />
+                <WordsList />
               </Route>
               <Route>
-                <Error className="error404" />
+                <Error />
               </Route>
             </Switch>
           </Router>
         </main>
-        <Footer className="footer" />
+        <Footer />
       </div>
     </BrowserRouter>
   );

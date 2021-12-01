@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Menu() {
   return (
     <div className="menu">
-      <Link to="/logo">
+      <Link to="/">
         <img src={Logo} alt="logo" />
       </Link>
       <nav className="menu-links">
