@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WordsList from "./components/WordsList/WordsList";
 import CardContainer from "./components/CardContainer/CardContainer";
+import Error from "./components/Error/Error";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,27 +16,25 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="main">
+        <main className="main">
           <Router>
             <Header />
             <Switch>
-              <Route exact path="/logo">
-                <WordsList className="table" />
-              </Route>
               <Route exact path="/wordsList">
-                <WordsList className="table" />
+                <WordsList />
               </Route>
-              <Route exact path="/game">
-                <CardContainer className="card" />
+              <Route exact path="/game" component={CardContainer} />
+              <Route exact path="/">
+                <WordsList />
               </Route>
-              <Route path="/">
-                <WordsList className="table" />
+              <Route>
+                <Error />
               </Route>
             </Switch>
           </Router>
-        </div>
+        </main>
+        <Footer />
       </div>
-      <Footer className="footer" />
     </BrowserRouter>
   );
 }

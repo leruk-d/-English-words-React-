@@ -6,6 +6,8 @@
   font-size: small;
   &:hover {
     transform: scale(1.2);
-    background-color: #f4e0f5;
+  }
+  .disabled {
+    color: #b3b3b6;
   }
 }

@@ -3,9 +3,14 @@ import "./ButtonNext.scss";
 
 function ButtonNext(props) {
   return (
-    <span className="next" onClick={props.onClick}>
-      next{" "}
-    </span>
+    <div className="next">
+      <span
+        className={props.disabled ? "disabled" : ""}
+        onClick={props.onClick}
+      >
+        next
+      </span>
+    </div>
   );
 }
 
