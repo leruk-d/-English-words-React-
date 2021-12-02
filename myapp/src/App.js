@@ -33,7 +33,7 @@ function App() {
             </Switch>
           </Router>
         </main>
-        <Footer className="footer" />
+        <Footer />
       </div>
     </BrowserRouter>
   );
