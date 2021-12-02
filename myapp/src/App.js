@@ -20,9 +20,6 @@ function App() {
           <Router>
             <Header />
             <Switch>
-              <Route exact path="/">
-                <WordsList />
-              </Route>
               <Route exact path="/wordsList">
                 <WordsList />
               </Route>
@@ -36,7 +33,7 @@ function App() {
             </Switch>
           </Router>
         </main>
-        <Footer />
+        <Footer className="footer" />
       </div>
     </BrowserRouter>
   );
