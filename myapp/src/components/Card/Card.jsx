@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Card.scss";
 import ButtonTranslate from "./ButtonTranslate";
 
 function Card(props) {
+  const [isAddedToCard, setIsAddedToCard] = useState(true);
   return (
     <div className="card">
       <div className="card-body">
@@ -11,7 +12,12 @@ function Card(props) {
         <div className="card-translation">
           <ButtonTranslate
             russian={props.translation}
-            onClick={props.onClick}
+            onClick={() => {
+              if (isAddedToCard) {
+                props?.addToCard();
+              }
+              setIsAddedToCard(!isAddedToCard);
+            }}
             pressed={props.isTranslationShown}
           />
         </div>

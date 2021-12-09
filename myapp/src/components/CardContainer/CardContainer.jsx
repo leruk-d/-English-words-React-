@@ -32,6 +32,7 @@ const words = [
 function CardContainer(props) {
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
   const [data, updateTranslationState] = useState(words);
+  const [wordsCount, setWordsCount] = useState(0);
 
   const handleClickNext = () => {
     const newIdx = selectedCardIndex + 1;
@@ -54,12 +55,18 @@ function CardContainer(props) {
     updateTranslationState(dataCopy);
   };
 
+  // const handleClickWords = () => {
+  //   const NewWordsCount = wordsCount + 1;
+  //   setWordsCount(NewWordsCount);
+  // };
+
   useEffect(() => {
     console.log(words.length);
   }, []);
 
   return (
     <div className="cardContainer">
+      <span> изучено {wordsCount} слов</span>
       <div className="oneCard">
         <ButtonPrevious
           onClick={handleClickPrev}
@@ -71,6 +78,7 @@ function CardContainer(props) {
           translation={words[selectedCardIndex].russian}
           onClick={handleClickTranslation}
           isTranslationShown={data[selectedCardIndex].isTranslationShow}
+          addToCard={() => setWordsCount(wordsCount + 1)}
         ></Card>
         <ButtonNext
           onClick={handleClickNext}
