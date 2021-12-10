@@ -3,7 +3,6 @@ import "./Card.scss";
 import ButtonTranslate from "./ButtonTranslate";
 
 function Card(props) {
-  const [isAddedToCard, setIsAddedToCard] = useState(true);
   return (
     <div className="card">
       <div className="card-body">
@@ -13,10 +12,10 @@ function Card(props) {
           <ButtonTranslate
             russian={props.translation}
             onClick={() => {
-              if (isAddedToCard) {
+              props.onClick();
+              if (!props.isTranslationShown) {
                 props?.addToWords();
               }
-              setIsAddedToCard(!isAddedToCard);
             }}
             pressed={props.isTranslationShown}
           />
