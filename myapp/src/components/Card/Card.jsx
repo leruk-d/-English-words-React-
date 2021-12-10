@@ -14,7 +14,7 @@ function Card(props) {
             russian={props.translation}
             onClick={() => {
               if (isAddedToCard) {
-                props?.addToCard();
+                props?.addToWords();
               }
               setIsAddedToCard(!isAddedToCard);
             }}

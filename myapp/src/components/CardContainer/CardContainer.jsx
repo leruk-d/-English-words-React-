@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Card from "../Card/Card";
 import ButtonPrevious from "../ButtonPrevious/ButtonPrevious";
 import ButtonNext from "../ButtonNext/ButtonNext";
@@ -55,10 +55,10 @@ function CardContainer(props) {
     updateTranslationState(dataCopy);
   };
 
-  // const handleClickWords = () => {
-  //   const NewWordsCount = wordsCount + 1;
-  //   setWordsCount(NewWordsCount);
-  // };
+  const addToWords = useCallback(
+    () => setWordsCount(wordsCount + 1),
+    [wordsCount]
+  );
 
   useEffect(() => {
     console.log(words.length);
@@ -78,7 +78,7 @@ function CardContainer(props) {
           translation={words[selectedCardIndex].russian}
           onClick={handleClickTranslation}
           isTranslationShown={data[selectedCardIndex].isTranslationShow}
-          addToCard={() => setWordsCount(wordsCount + 1)}
+          addToWords={addToWords}
         ></Card>
         <ButtonNext
           onClick={handleClickNext}
