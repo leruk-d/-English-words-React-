@@ -48,17 +48,20 @@ function CardContainer(props) {
     }
   };
 
-  const handleClickTranslation = () => {
-    const dataCopy = [...data];
-    dataCopy[selectedCardIndex].isTranslationShow =
-      !dataCopy[selectedCardIndex].isTranslationShow;
-    updateTranslationState(dataCopy);
-  };
-
   const addToWords = useCallback(
     () => setWordsCount(wordsCount + 1),
     [wordsCount]
   );
+
+  const handleClickTranslation = (isTranslationShown) => {
+    const dataCopy = [...data];
+    dataCopy[selectedCardIndex].isTranslationShow =
+      !dataCopy[selectedCardIndex].isTranslationShow;
+    updateTranslationState(dataCopy);
+    if (!isTranslationShown) {
+      addToWords();
+    }
+  };
 
   useEffect(() => {
     console.log(words.length);
@@ -76,9 +79,10 @@ function CardContainer(props) {
           word={words[selectedCardIndex].english}
           transcription={words[selectedCardIndex].transcription}
           translation={words[selectedCardIndex].russian}
-          onClick={handleClickTranslation}
+          onClick={() =>
+            handleClickTranslation(data[selectedCardIndex].isTranslationShow)
+          }
           isTranslationShown={data[selectedCardIndex].isTranslationShow}
-          addToWords={addToWords}
         ></Card>
         <ButtonNext
           onClick={handleClickNext}

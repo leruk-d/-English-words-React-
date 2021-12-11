@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Card.scss";
 import ButtonTranslate from "./ButtonTranslate";
 
@@ -11,12 +11,7 @@ function Card(props) {
         <div className="card-translation">
           <ButtonTranslate
             russian={props.translation}
-            onClick={() => {
-              props.onClick();
-              if (!props.isTranslationShown) {
-                props?.addToWords();
-              }
-            }}
+            onClick={props.onClick}
             pressed={props.isTranslationShown}
           />
         </div>
