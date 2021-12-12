@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./ButtonTranslate.scss";
 
 function ButtonTranslate(props) {
+  const buttonTranslateRef = useRef();
+
+  useEffect(() => buttonTranslateRef.current.focus(), []);
   return !props.pressed ? (
-    <button className="button" onClick={props.onClick}>
+    <button ref={buttonTranslateRef} className="button" onClick={props.onClick}>
       Проверить
     </button>
   ) : (

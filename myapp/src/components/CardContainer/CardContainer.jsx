@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Card from "../Card/Card";
 import ButtonPrevious from "../ButtonPrevious/ButtonPrevious";
 import ButtonNext from "../ButtonNext/ButtonNext";
@@ -32,6 +32,7 @@ const words = [
 function CardContainer(props) {
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
   const [data, updateTranslationState] = useState(words);
+  const [wordsCount, setWordsCount] = useState(0);
 
   const handleClickNext = () => {
     const newIdx = selectedCardIndex + 1;
@@ -47,11 +48,19 @@ function CardContainer(props) {
     }
   };
 
-  const handleClickTranslation = () => {
+  const addToWords = useCallback(
+    () => setWordsCount(wordsCount + 1),
+    [wordsCount]
+  );
+
+  const handleClickTranslation = (isTranslationShown) => {
     const dataCopy = [...data];
     dataCopy[selectedCardIndex].isTranslationShow =
       !dataCopy[selectedCardIndex].isTranslationShow;
     updateTranslationState(dataCopy);
+    if (!isTranslationShown) {
+      addToWords();
+    }
   };
 
   useEffect(() => {
@@ -60,6 +69,7 @@ function CardContainer(props) {
 
   return (
     <div className="cardContainer">
+      <span> изучено {wordsCount} слов</span>
       <div className="oneCard">
         <ButtonPrevious
           onClick={handleClickPrev}
@@ -69,7 +79,9 @@ function CardContainer(props) {
           word={words[selectedCardIndex].english}
           transcription={words[selectedCardIndex].transcription}
           translation={words[selectedCardIndex].russian}
-          onClick={handleClickTranslation}
+          onClick={() =>
+            handleClickTranslation(data[selectedCardIndex].isTranslationShow)
+          }
           isTranslationShown={data[selectedCardIndex].isTranslationShow}
         ></Card>
         <ButtonNext

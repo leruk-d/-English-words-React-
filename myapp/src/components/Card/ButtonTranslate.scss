@@ -2,4 +2,8 @@
   border: none;
   border-radius: 9%;
   height: 25px;
+  &:focus {
+    background-color: #ceadd8;
+    color: #f8f6f8;
+  }
 }
