@@ -3,9 +3,11 @@ import ButtonDel from "../Buttons/ButtonDelete";
 import ButtonAdd from "../Buttons/ButtonAdd";
 import ButtonEdit from "../Buttons/ButtonEdit";
 import "./TableRow.scss";
+import InputForWord from "../InputWordListAdd/Input";
 
 function TableRow(props) {
   const [pressed, setPressed] = useState(false);
+  
 
   const handleChange = () => {
     setPressed(!pressed);
