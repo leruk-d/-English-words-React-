@@ -16,16 +16,6 @@ function EditableRow(props) {
     translation: false,
   });
 
-  const handleSave = () => {
-    if (!imputData.word.match(/^[A-Za-z 0-9]*$/)) {
-      setErrors({ ...errors, word: "Введите слово на английском языке" });
-    } else if (!imputData.translation.match(/^[а-яё 0-9]+$/i)) {
-      setErrors({ ...errors, translation: "Введите слово на русском языке" });
-    } else {
-      console.log("тут значения слов");
-    }
-  };
-
   const addImputData = (event) => {
     setImputData({
       ...imputData,
@@ -35,13 +25,36 @@ function EditableRow(props) {
 
   const { word, transcription, translation } = imputData;
 
-  let validate = () => {
-    const { word, transcription, translation } = imputData;
-    if (word.trim() && transcription.trim() && translation.trim()) {
-      return true;
-    }
-    return false;
+  const onlyLatinCharacters = (value) => {
+    return /^[a-zA-Z]+$/.test(value);
   };
+
+  const onlyRussianCharacters = (value) => {
+    return /^[\u0400-\u04FF]+$/.test(value);
+  };
+
+  const handleSave = () => {
+    if (!onlyLatinCharacters(imputData.word)) {
+      setErrors({ ...errors, word: "Введите слово на английском языке" });
+    } else if (!onlyRussianCharacters(imputData.translation)) {
+      setErrors({ ...errors, translation: "Введите слово на русском языке" });
+    } else {
+      console.log(imputData.word);
+      console.log(imputData.transcription);
+      console.log(imputData.translation);
+      setErrors({
+        word: false,
+        transcription: false,
+        translation: false,
+      });
+    }
+  };
+
+  const validate = () => {
+    const { word, transcription, translation } = imputData;
+    return word.trim() && transcription.trim() && translation.trim();
+  };
+
   return (
     <tr className="rowAddWord">
       <td>
