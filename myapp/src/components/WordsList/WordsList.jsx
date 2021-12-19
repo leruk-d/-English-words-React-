@@ -1,7 +1,7 @@
 import React from "react";
 import "./WordList.scss";
 import TableRow from "./TableRow";
-import InputForWord from "../InputWordListAdd/Input";
+import EditableRow from "./EditableRow";
 
 let words = [
   { id: "peace", english: "peace", transcription: "[ piːs ]", russian: "мир" },
@@ -29,7 +29,7 @@ function WordList() {
           </tr>
         </thead>
         <tbody>
-          <InputForWord />
+          <EditableRow />
           {words.map((word) => (
             <TableRow
               key={word.id}
