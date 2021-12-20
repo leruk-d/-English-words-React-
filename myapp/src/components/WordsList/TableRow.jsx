@@ -94,13 +94,13 @@ function TableRow(props) {
       ) : (
         <>
           <td className="row-word" onClick={handleChange}>
-            {props.word}
+            {imputData.word}
           </td>
           <td className="row-word" onClick={handleChange}>
-            {props.transcription}
+            {imputData.transcription}
           </td>
           <td className="row-word" onClick={handleChange}>
-            {props.translation}
+            {imputData.translation}
           </td>
         </>
       )}
