@@ -36,8 +36,10 @@ function EditableRow(props) {
   const handleSave = () => {
     if (!onlyLatinCharacters(imputData.word)) {
       setErrors({ ...errors, word: "Введите слово на английском языке" });
+      alert("Некоторые поля заполнены неправильно!");
     } else if (!onlyRussianCharacters(imputData.translation)) {
       setErrors({ ...errors, translation: "Введите слово на русском языке" });
+      alert("Некоторые поля заполнены неправильно!");
     } else {
       console.log(imputData.word);
       console.log(imputData.transcription);

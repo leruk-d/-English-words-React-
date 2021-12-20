@@ -42,8 +42,10 @@ function TableRow(props) {
   const handleSave = () => {
     if (!onlyLatinCharacters(imputData.word)) {
       setErrors({ ...errors, word: "Введите слово на английском языке" });
+      alert("Некоторые поля заполнены неправильно!");
     } else if (!onlyRussianCharacters(imputData.translation)) {
       setErrors({ ...errors, translation: "Введите слово на русском языке" });
+      alert("Некоторые поля заполнены неправильно!");
     } else {
       console.log(imputData.word);
       console.log(imputData.transcription);
@@ -53,9 +55,10 @@ function TableRow(props) {
         transcription: false,
         translation: false,
       });
+      handleChange();
     }
   };
-  console.log(imputData);
+
   return (
     <tr className="row" key={props.id}>
       {pressed === true ? (
@@ -64,7 +67,6 @@ function TableRow(props) {
             <input
               className="row-input"
               type="text"
-              onClick={handleChange}
               value={word}
               onChange={(e) => addImputData(e)}
               name="word"
@@ -74,7 +76,6 @@ function TableRow(props) {
             <input
               className="row-input"
               type="text"
-              onClick={handleChange}
               value={transcription}
               onChange={(e) => addImputData(e)}
               name="transcription"
@@ -84,7 +85,6 @@ function TableRow(props) {
             <input
               className="row-input"
               type="text"
-              onClick={handleChange}
               value={translation}
               onChange={(e) => addImputData(e)}
               name="translation"
@@ -106,13 +106,7 @@ function TableRow(props) {
       )}
       <td>
         <div className="buttons">
-          <ButtonEdit
-            onClick={() => {
-              handleChange();
-              handleSave();
-            }}
-            pressed={pressed}
-          />
+          <ButtonEdit onClick={handleSave} pressed={pressed} />
           <ButtonDel />
         </div>
       </td>
