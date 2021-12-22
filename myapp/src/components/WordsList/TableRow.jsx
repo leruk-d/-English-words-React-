@@ -1,14 +1,62 @@
 import React, { useState } from "react";
 import ButtonDel from "../Buttons/ButtonDelete";
-import ButtonAdd from "../Buttons/ButtonAdd";
 import ButtonEdit from "../Buttons/ButtonEdit";
 import "./TableRow.scss";
 
 function TableRow(props) {
   const [pressed, setPressed] = useState(false);
 
+  const [imputData, setImputData] = useState({
+    word: props.word,
+    transcription: props.transcription,
+    translation: props.translation,
+  });
+
+  const [errors, setErrors] = useState({
+    word: false,
+    transcription: false,
+    translation: false,
+  });
+
   const handleChange = () => {
     setPressed(!pressed);
+  };
+
+  const addImputData = (event) => {
+    setImputData({
+      ...imputData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const { word, transcription, translation } = imputData;
+
+  const onlyLatinCharacters = (value) => {
+    return /^[a-zA-Z]+$/.test(value);
+  };
+
+  const onlyRussianCharacters = (value) => {
+    return /^[\u0400-\u04FF]+$/.test(value);
+  };
+
+  const handleSave = () => {
+    if (!onlyLatinCharacters(imputData.word)) {
+      setErrors({ ...errors, word: "Введите слово на английском языке" });
+      alert("Некоторые поля заполнены неправильно!");
+    } else if (!onlyRussianCharacters(imputData.translation)) {
+      setErrors({ ...errors, translation: "Введите слово на русском языке" });
+      alert("Некоторые поля заполнены неправильно!");
+    } else {
+      console.log(imputData.word);
+      console.log(imputData.transcription);
+      console.log(imputData.translation);
+      setErrors({
+        word: false,
+        transcription: false,
+        translation: false,
+      });
+      handleChange();
+    }
   };
 
   return (
@@ -18,41 +66,47 @@ function TableRow(props) {
           <td>
             <input
               className="row-input"
-              value={props.word}
-              onClick={handleChange}
+              type="text"
+              value={word}
+              onChange={(e) => addImputData(e)}
+              name="word"
             />
           </td>
           <td>
             <input
               className="row-input"
-              value={props.transcription}
-              onClick={handleChange}
+              type="text"
+              value={transcription}
+              onChange={(e) => addImputData(e)}
+              name="transcription"
             />
           </td>
           <td>
             <input
               className="row-input"
-              value={props.translation}
-              onClick={handleChange}
+              type="text"
+              value={translation}
+              onChange={(e) => addImputData(e)}
+              name="translation"
             />
           </td>
         </>
       ) : (
         <>
           <td className="row-word" onClick={handleChange}>
-            {props.word}
+            {imputData.word}
           </td>
           <td className="row-word" onClick={handleChange}>
-            {props.transcription}
+            {imputData.transcription}
           </td>
           <td className="row-word" onClick={handleChange}>
-            {props.translation}
+            {imputData.translation}
           </td>
         </>
       )}
       <td>
         <div className="buttons">
-          <ButtonEdit onClick={handleChange} pressed={pressed} />
+          <ButtonEdit onClick={handleSave} pressed={pressed} />
           <ButtonDel />
         </div>
       </td>
