@@ -1,35 +1,37 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import Card from "../Card/Card";
 import ButtonPrevious from "../ButtonPrevious/ButtonPrevious";
 import ButtonNext from "../ButtonNext/ButtonNext";
 import "./CardContainer.scss";
+import DataContext from "../../Context/Context";
 
-const words = [
-  {
-    id: "peace",
-    english: "peace",
-    transcription: "[ piːs ]",
-    russian: "мир",
-    isTranslationShow: false,
-  },
-  {
-    id: "friendship",
-    english: "friendship",
-    transcription: "[ ˈfrendʃɪp ]",
-    russian: "дружба",
-    isTranslationShow: false,
-  },
+// const words = [
+//   {
+//     id: "peace",
+//     english: "peace",
+//     transcription: "[ piːs ]",
+//     russian: "мир",
+//     isTranslationShow: false,
+//   },
+//   {
+//     id: "friendship",
+//     english: "friendship",
+//     transcription: "[ ˈfrendʃɪp ]",
+//     russian: "дружба",
+//     isTranslationShow: false,
+//   },
 
-  {
-    id: "gum",
-    english: "gum",
-    transcription: "[ ɡʌm ]",
-    russian: "жвачка",
-    isTranslationShow: false,
-  },
-];
+//   {
+//     id: "gum",
+//     english: "gum",
+//     transcription: "[ ɡʌm ]",
+//     russian: "жвачка",
+//     isTranslationShow: false,
+//   },
+// ];
 
 function CardContainer(props) {
+  const { words } = useContext(DataContext);
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
   const [data, updateTranslationState] = useState(words);
   const [wordsCount, setWordsCount] = useState(0);
@@ -62,10 +64,6 @@ function CardContainer(props) {
       addToWords();
     }
   };
-
-  useEffect(() => {
-    console.log(words.length);
-  }, []);
 
   return (
     <div className="cardContainer">

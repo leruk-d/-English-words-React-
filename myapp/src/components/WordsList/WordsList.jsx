@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./WordList.scss";
 import TableRow from "./TableRow";
 import EditableRow from "./EditableRow";
+import DataContext from "../../Context/Context";
 
-let words = [
-  { id: "peace", english: "peace", transcription: "[ piːs ]", russian: "мир" },
-  {
-    id: "friendship",
-    english: "friendship",
-    transcription: "[ ˈfrendʃɪp ]",
-    russian: "дружба",
-  },
+// let words = [
+//   { id: "peace", english: "peace", transcription: "[ piːs ]", russian: "мир" },
+//   {
+//     id: "friendship",
+//     english: "friendship",
+//     transcription: "[ ˈfrendʃɪp ]",
+//     russian: "дружба",
+//   },
 
-  { id: "gum", english: "gum", transcription: "[ ɡʌm ]", russian: "жвачка" },
-];
+//   { id: "gum", english: "gum", transcription: "[ ɡʌm ]", russian: "жвачка" },
+// ];
 
 function WordList() {
+  const { words } = useContext(DataContext);
+
   return (
     <div className="main_table">
       <table className="table">
