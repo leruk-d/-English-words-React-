@@ -7,6 +7,7 @@ function TableRow(props) {
   const [pressed, setPressed] = useState(false);
 
   const [imputData, setImputData] = useState({
+    id: props.id,
     word: props.word,
     transcription: props.transcription,
     translation: props.translation,
@@ -29,7 +30,7 @@ function TableRow(props) {
     });
   };
 
-  const { word, transcription, translation } = imputData;
+  const { id, word, transcription, translation } = imputData;
 
   const onlyLatinCharacters = (value) => {
     return /^[a-zA-Z]+$/.test(value);
@@ -47,15 +48,42 @@ function TableRow(props) {
       setErrors({ ...errors, translation: "Введите слово на русском языке" });
       alert("Некоторые поля заполнены неправильно!");
     } else {
-      console.log(imputData.word);
-      console.log(imputData.transcription);
-      console.log(imputData.translation);
-      setErrors({
-        word: false,
-        transcription: false,
-        translation: false,
-      });
-      handleChange();
+      //     console.log(imputData.word);
+      //     console.log(imputData.transcription);
+      //     console.log(imputData.translation);
+      //     setErrors({
+      //       word: false,
+      //       transcription: false,
+      //       translation: false,
+      //     });
+      //     handleChange();
+      //   }
+      // };
+
+      fetch(`/api/words/${id}/update`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+          english: imputData.english,
+          russian: imputData.russian,
+          transcription: imputData.transcription,
+          tags: [],
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            //Проверяем что код ответа 200
+            return response.json();
+          } else {
+            throw new Error("Something went wrong ...");
+          }
+        })
+        .then((data) => {
+          setImputData(data);
+        })
+        .catch((err) => console.log(err));
     }
   };
 

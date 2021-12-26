@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Error from "../components/Error/Error";
 
 const DataContext = React.createContext();
 
