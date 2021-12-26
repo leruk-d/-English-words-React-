@@ -11,12 +11,21 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import DataContext from "./Context/Context";
+import { DataContext } from "./Context/Context";
+import Loading from "./components/Loading/Loading";
 
 function App() {
-  const { isLoading } = useContext(DataContext);
+  const { isLoading, error } = useContext(DataContext);
+   if (error) {
+            return <p>{error.message}</p>;
+        }
+
   if (isLoading) {
-    return <div>Загрузка...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
   return (
     <BrowserRouter>

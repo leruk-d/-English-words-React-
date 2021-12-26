@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import ButtonPrevious from "../ButtonPrevious/ButtonPrevious";
 import ButtonNext from "../ButtonNext/ButtonNext";
 import "./CardContainer.scss";
-import DataContext from "../../Context/Context";
+import { DataContext } from "../../Context/Context";
 
 // const words = [
 //   {

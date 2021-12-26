@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./WordList.scss";
 import TableRow from "./TableRow";
 import EditableRow from "./EditableRow";
-import DataContext from "../../Context/Context";
+import { DataContext } from "../../Context/Context";
 
 // let words = [
 //   { id: "peace", english: "peace", transcription: "[ piːs ]", russian: "мир" },
