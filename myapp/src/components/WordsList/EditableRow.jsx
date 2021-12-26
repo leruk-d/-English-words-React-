@@ -41,14 +41,40 @@ function EditableRow(props) {
       setErrors({ ...errors, translation: "Введите слово на русском языке" });
       alert("Некоторые поля заполнены неправильно!");
     } else {
-      console.log(imputData.word);
-      console.log(imputData.transcription);
-      console.log(imputData.translation);
-      setErrors({
-        word: false,
-        transcription: false,
-        translation: false,
-      });
+      // console.log(imputData.word);
+      // console.log(imputData.transcription);
+      // console.log(imputData.translation);
+      // setErrors({
+      //   word: false,
+      //   transcription: false,
+      //   translation: false,
+      // });
+      fetch("/api/words/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+          english: imputData.word,
+          russian: imputData.translation,
+          transcription: imputData.transcription,
+          tags: [],
+        }),
+      })
+        .then((response) => {
+          setImputData({
+            word: " ",
+            translation: " ",
+            transcription: "",
+          });
+          if (response.ok) {
+            //Проверяем что код ответа 200
+            return response.json();
+          } else {
+            throw new Error("Something went wrong ...");
+          }
+        })
+        .catch((err) => console.log(err));
     }
   };
 

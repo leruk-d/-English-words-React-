@@ -66,8 +66,8 @@ function TableRow(props) {
           "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify({
-          english: imputData.english,
-          russian: imputData.russian,
+          english: imputData.word,
+          russian: imputData.translation,
           transcription: imputData.transcription,
           tags: [],
         }),
@@ -87,6 +87,21 @@ function TableRow(props) {
     }
   };
 
+  const handleDelete = (id) => {
+    fetch(`/api/words/${id}/delete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        //Проверяем что код ответа 200
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    });
+  };
   return (
     <tr className="row" key={props.id}>
       {pressed === true ? (
@@ -135,7 +150,7 @@ function TableRow(props) {
       <td>
         <div className="buttons">
           <ButtonEdit onClick={handleSave} pressed={pressed} />
-          <ButtonDel />
+          <ButtonDel onClick={() => handleDelete(id)} />
         </div>
       </td>
     </tr>
