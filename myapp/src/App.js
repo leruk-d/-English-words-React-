@@ -16,9 +16,9 @@ import Loading from "./components/Loading/Loading";
 
 function App() {
   const { isLoading, error } = useContext(DataContext);
-   if (error) {
-            return <p>{error.message}</p>;
-        }
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
   if (isLoading) {
     return (

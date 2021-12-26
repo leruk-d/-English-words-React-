@@ -10,28 +10,29 @@ function DataContextProvider(props) {
   useEffect(() => {
     setIsLoading(true);
     fetch("/api/words")
-          .then(response => {
-              if (response.ok) { //Проверяем что код ответа 200
-                  return response.json();
-              } else {
-                  throw new Error('Something went wrong ...');
-              }
-          })
-          .then((data) => {
-               setData(data);
-              setIsLoading(false);
-          })
-          .catch(error => {
-            setIsLoading(false);
-            setError(error);
-        });
-  }
-  , []);
- // Примечание: пустой массив зависимостей [] означает, что
+      .then((response) => {
+        if (response.ok) {
+          //Проверяем что код ответа 200
+          return response.json();
+        } else {
+          throw new Error("Something went wrong ...");
+        }
+      })
+      .then((data) => {
+        setData(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setError(error);
+      });
+  }, []);
+
+  // Примечание: пустой массив зависимостей [] означает, что
   // этот useEffect будет запущен один раз
 
   return (
-    <DataContext.Provider value={{ words, isLoading }}>
+    <DataContext.Provider value={{ words, isLoading, error }}>
       {props.children}
     </DataContext.Provider>
   );
