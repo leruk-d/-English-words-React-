@@ -74,6 +74,13 @@ function EditableRow(props) {
             throw new Error("Something went wrong ...");
           }
         })
+        .then(
+          setErrors({
+            word: false,
+            transcription: false,
+            translation: false,
+          })
+        )
         .catch((err) => console.log(err));
     }
   };

@@ -80,6 +80,13 @@ function TableRow(props) {
             throw new Error("Something went wrong ...");
           }
         })
+        .then(
+          setErrors({
+            word: false,
+            transcription: false,
+            translation: false,
+          })
+        )
         .then((data) => {
           setImputData(data);
         })

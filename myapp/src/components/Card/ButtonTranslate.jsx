@@ -4,7 +4,11 @@ import "./ButtonTranslate.scss";
 function ButtonTranslate(props) {
   const buttonTranslateRef = useRef();
 
-  useEffect(() => buttonTranslateRef.current.focus(), []);
+  useEffect(() => {
+    if (buttonTranslateRef?.current) {
+      buttonTranslateRef?.current?.focus?.();
+    }
+  }, [buttonTranslateRef?.current]);
   return !props.pressed ? (
     <button ref={buttonTranslateRef} className="button" onClick={props.onClick}>
       Проверить

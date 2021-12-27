@@ -4,6 +4,7 @@ import ButtonPrevious from "../ButtonPrevious/ButtonPrevious";
 import ButtonNext from "../ButtonNext/ButtonNext";
 import "./CardContainer.scss";
 import { DataContext } from "../../Context/Context";
+import Loading from "../Loading/Loading";
 
 // const words = [
 //   {
@@ -65,6 +66,7 @@ function CardContainer(props) {
     }
   };
 
+  if (!words.length) return <Loading />;
   return (
     <div className="cardContainer">
       <span className="wordsCount"> изучено {wordsCount} слов</span>
