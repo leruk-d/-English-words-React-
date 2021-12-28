@@ -24,6 +24,7 @@ function WordList() {
           {words.map((word) => (
             <TableRow
               key={word.id}
+              id={word.id}
               word={word.english}
               transcription={word.transcription}
               translation={word.russian}
