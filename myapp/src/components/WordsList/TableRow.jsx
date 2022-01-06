@@ -5,13 +5,13 @@ import "./TableRow.scss";
 import { observer, inject } from "mobx-react";
 
 const TableRow = inject(["dataStore"])(
-  observer(({ dataStore }) => {
+  observer(({ dataStore, ...props }) => {
     const [pressed, setPressed] = useState(false);
 
     const [inputData, setInputData] = useState({
-      word: dataStore.data.word,
-      transcription: dataStore.data.transcription,
-      translation: dataStore.data.translation,
+      word: props.word,
+      transcription: props.transcription,
+      translation: props.translation,
     });
 
     const [errors, setErrors] = useState({

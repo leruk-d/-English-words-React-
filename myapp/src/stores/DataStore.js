@@ -1,12 +1,17 @@
-import { action, observable } from "mobx";
+import { action, makeAutoObservable, observable } from "mobx";
 
 class DataStore {
-  @observable data = [];
-  @observable isLoading = false;
-  @observable error = null;
+  data = [];
+  isLoading = false;
+  error = null;
+
+  constructor() {
+    makeAutoObservable(this);
+    this.loadData();
+  }
 
   loadData = () => {
-    fetch("/api/words")
+    fetch("http://itgirlschool.justmakeit.ru/api/words")
       .then((response) => {
         if (response.ok) {
           //Проверяем что код ответа 200
@@ -18,9 +23,8 @@ class DataStore {
       .then((response) => (this.data = response));
   };
 
-  @action
   addNewWord = (inputData) => {
-    fetch("/api/words/add", {
+    fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -45,7 +49,7 @@ class DataStore {
       });
   };
 
-  @action deleteWord = (id) => {
+  deleteWord = (id) => {
     fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
       method: "POST",
     })
@@ -62,14 +66,17 @@ class DataStore {
       });
   };
 
-  @action updateWord = (inputData) => {
-    fetch(`/api/words/${inputData.id}/update`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(inputData),
-    })
+  updateWord = (inputData) => {
+    fetch(
+      `http://itgirlschool.justmakeit.ru/api/words/${inputData.id}/update`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(inputData),
+      }
+    )
       .then((response) => {
         if (response.ok) {
           return response.json();
