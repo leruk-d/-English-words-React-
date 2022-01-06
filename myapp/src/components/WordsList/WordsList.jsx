@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./WordList.scss";
 import TableRow from "./TableRow";
 import EditableRow from "./EditableRow";
@@ -18,9 +18,6 @@ import { observer, inject } from "mobx-react";
 
 const WordList = inject(["dataStore"])(
   observer(({ dataStore }) => {
-    useEffect(() => {
-      dataStore.loadData();
-    }, []);
     return (
       <div className="main_table">
         <table className="table">

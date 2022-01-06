@@ -1,4 +1,4 @@
-import { action, makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 class DataStore {
   data = [];
