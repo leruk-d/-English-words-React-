@@ -9,6 +9,7 @@ const TableRow = inject(["dataStore"])(
     const [pressed, setPressed] = useState(false);
 
     const [inputData, setInputData] = useState({
+      id: props.id,
       word: props.word,
       transcription: props.transcription,
       translation: props.translation,
@@ -58,9 +59,10 @@ const TableRow = inject(["dataStore"])(
         handleChange();
       }
     };
+    const handleDelete = () => dataStore.deleteWord();
 
     return (
-      <tr className="row" key={dataStore.data.id}>
+      <tr className="row" key={props.id}>
         {pressed === true ? (
           <>
             <td>
@@ -107,7 +109,7 @@ const TableRow = inject(["dataStore"])(
         <td>
           <div className="buttons">
             <ButtonEdit onClick={handleSave} pressed={pressed} />
-            <ButtonDel />
+            <ButtonDel onClick={() => handleDelete(props.id)} />
           </div>
         </td>
       </tr>

@@ -23,7 +23,7 @@ class DataStore {
       .then((response) => (this.data = response));
   };
 
-  addNewWord = (inputData) => {
+  addNewWord = (inputData, setInputData) => {
     fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
       method: "POST",
       headers: {
@@ -37,6 +37,11 @@ class DataStore {
       }),
     })
       .then((response) => {
+        setInputData({
+          word: " ",
+          translation: " ",
+          transcription: "",
+        });
         if (response.ok) {
           //Проверяем что код ответа 200
           return response.json();
@@ -44,12 +49,11 @@ class DataStore {
           throw new Error("Something went wrong ...");
         }
       })
-      .then(() => {
-        this.loadData();
-      });
+      .catch((err) => console.log(err));
   };
 
   deleteWord = (id) => {
+    this.isLoading = true;
     fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
       method: "POST",
     })
@@ -61,22 +65,18 @@ class DataStore {
           throw new Error("Something went wrong ...");
         }
       })
-      .then(() => {
-        this.loadData();
-      });
+      .then((response) => (this.data = response));
+    this.isLoading = false;
   };
 
-  updateWord = (inputData) => {
-    fetch(
-      `http://itgirlschool.justmakeit.ru/api/words/${inputData.id}/update`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(inputData),
-      }
-    )
+  updateWord = (inputData, id) => {
+    fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/update`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(inputData),
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -85,9 +85,7 @@ class DataStore {
         }
       })
 
-      .then(() => {
-        this.loadData();
-      });
+      .then((response) => (this.data = response));
   };
 }
 

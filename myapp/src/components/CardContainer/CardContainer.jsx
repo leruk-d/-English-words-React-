@@ -4,6 +4,7 @@ import ButtonPrevious from "../ButtonPrevious/ButtonPrevious";
 import ButtonNext from "../ButtonNext/ButtonNext";
 import "./CardContainer.scss";
 import { observer, inject } from "mobx-react";
+import Loading from "../Loading/Loading";
 
 const CardContainer = inject(["dataStore"])(
   observer(({ dataStore }) => {
@@ -39,6 +40,8 @@ const CardContainer = inject(["dataStore"])(
         addToWords();
       }
     };
+
+    if (!dataStore.data.length) return <Loading />;
 
     return (
       <div className="cardContainer">
