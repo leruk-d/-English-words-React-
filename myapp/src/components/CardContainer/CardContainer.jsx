@@ -56,9 +56,10 @@ const CardContainer = inject(["dataStore"])(
             transcription={dataStore.data[selectedCardIndex].transcription}
             translation={dataStore.data[selectedCardIndex].russian}
             onClick={() =>
-              handleClickTranslation(data[selectedCardIndex].isTranslationShow)
+              handleClickTranslation(data[selectedCardIndex]?.isTranslationShow)
             }
-            isTranslationShown={data[selectedCardIndex].isTranslationShow}
+            isTranslationShown={data[selectedCardIndex]?.isTranslationShow}
+            //Надо везде добавить optional chaning(?), потому что карточек может не быть.
           ></Card>
           <ButtonNext
             onClick={handleClickNext}
