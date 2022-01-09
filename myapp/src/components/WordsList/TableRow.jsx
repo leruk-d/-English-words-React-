@@ -6,7 +6,7 @@ import "./TableRow.scss";
 function TableRow(props) {
   const [pressed, setPressed] = useState(false);
 
-  const [imputData, setImputData] = useState({
+  const [inputData, setInputData] = useState({
     id: props.id,
     word: props.word,
     transcription: props.transcription,
@@ -23,14 +23,14 @@ function TableRow(props) {
     setPressed(!pressed);
   };
 
-  const addImputData = (event) => {
-    setImputData({
-      ...imputData,
+  const addInputData = (event) => {
+    setInputData({
+      ...inputData,
       [event.target.name]: event.target.value,
     });
   };
 
-  const { id, word, transcription, translation } = imputData;
+  const { id, word, transcription, translation } = inputData;
 
   const onlyLatinCharacters = (value) => {
     return /^[a-zA-Z]+$/.test(value);
@@ -41,16 +41,16 @@ function TableRow(props) {
   };
 
   const handleSave = () => {
-    if (!onlyLatinCharacters(imputData.word)) {
+    if (!onlyLatinCharacters(inputData.word)) {
       setErrors({ ...errors, word: "Введите слово на английском языке" });
       alert("Некоторые поля заполнены неправильно!");
-    } else if (!onlyRussianCharacters(imputData.translation)) {
+    } else if (!onlyRussianCharacters(inputData.translation)) {
       setErrors({ ...errors, translation: "Введите слово на русском языке" });
       alert("Некоторые поля заполнены неправильно!");
     } else {
-      //     console.log(imputData.word);
-      //     console.log(imputData.transcription);
-      //     console.log(imputData.translation);
+      //     console.log(inputData.word);
+      //     console.log(inputData.transcription);
+      //     console.log(inputData.translation);
       //     setErrors({
       //       word: false,
       //       transcription: false,
@@ -66,9 +66,9 @@ function TableRow(props) {
           "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify({
-          english: imputData.word,
-          russian: imputData.translation,
-          transcription: imputData.transcription,
+          english: inputData.word,
+          russian: inputData.translation,
+          transcription: inputData.transcription,
           tags: [],
         }),
       })
@@ -88,7 +88,7 @@ function TableRow(props) {
           })
         )
         .then((data) => {
-          setImputData(data);
+          setInputData(data);
         })
         .catch((err) => console.log(err));
     }
@@ -118,7 +118,7 @@ function TableRow(props) {
               className="row-input"
               type="text"
               value={word}
-              onChange={(e) => addImputData(e)}
+              onChange={(e) => addInputData(e)}
               name="word"
             />
           </td>
@@ -127,7 +127,7 @@ function TableRow(props) {
               className="row-input"
               type="text"
               value={transcription}
-              onChange={(e) => addImputData(e)}
+              onChange={(e) => addInputData(e)}
               name="transcription"
             />
           </td>
@@ -136,7 +136,7 @@ function TableRow(props) {
               className="row-input"
               type="text"
               value={translation}
-              onChange={(e) => addImputData(e)}
+              onChange={(e) => addInputData(e)}
               name="translation"
             />
           </td>
@@ -144,13 +144,13 @@ function TableRow(props) {
       ) : (
         <>
           <td className="row-word" onClick={handleChange}>
-            {imputData.word}
+            {inputData.word}
           </td>
           <td className="row-word" onClick={handleChange}>
-            {imputData.transcription}
+            {inputData.transcription}
           </td>
           <td className="row-word" onClick={handleChange}>
-            {imputData.translation}
+            {inputData.translation}
           </td>
         </>
       )}

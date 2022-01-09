@@ -4,7 +4,7 @@ import ButtonDel from "../Buttons/ButtonDelete";
 import ButtonAdd from "../Buttons/ButtonAdd";
 
 function EditableRow(props) {
-  const [imputData, setImputData] = useState({
+  const [inputData, setInputData] = useState({
     word: "",
     transcription: "",
     translation: "",
@@ -16,14 +16,14 @@ function EditableRow(props) {
     translation: false,
   });
 
-  const addImputData = (event) => {
-    setImputData({
-      ...imputData,
+  const addInputData = (event) => {
+    setInputData({
+      ...inputData,
       [event.target.name]: event.target.value,
     });
   };
 
-  const { word, transcription, translation } = imputData;
+  const { word, transcription, translation } = inputData;
 
   const onlyLatinCharacters = (value) => {
     return /^[a-zA-Z]+$/.test(value);
@@ -34,16 +34,16 @@ function EditableRow(props) {
   };
 
   const handleSave = () => {
-    if (!onlyLatinCharacters(imputData.word)) {
+    if (!onlyLatinCharacters(inputData.word)) {
       setErrors({ ...errors, word: "Введите слово на английском языке" });
       alert("Некоторые поля заполнены неправильно!");
-    } else if (!onlyRussianCharacters(imputData.translation)) {
+    } else if (!onlyRussianCharacters(inputData.translation)) {
       setErrors({ ...errors, translation: "Введите слово на русском языке" });
       alert("Некоторые поля заполнены неправильно!");
     } else {
-      // console.log(imputData.word);
-      // console.log(imputData.transcription);
-      // console.log(imputData.translation);
+      // console.log(inputData.word);
+      // console.log(inputData.transcription);
+      // console.log(inputData.translation);
       // setErrors({
       //   word: false,
       //   transcription: false,
@@ -55,14 +55,14 @@ function EditableRow(props) {
           "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify({
-          english: imputData.word,
-          russian: imputData.translation,
-          transcription: imputData.transcription,
+          english: inputData.word,
+          russian: inputData.translation,
+          transcription: inputData.transcription,
           tags: [],
         }),
       })
         .then((response) => {
-          setImputData({
+          setInputData({
             word: " ",
             translation: " ",
             transcription: "",
@@ -86,7 +86,7 @@ function EditableRow(props) {
   };
 
   const validate = () => {
-    const { word, transcription, translation } = imputData;
+    const { word, transcription, translation } = inputData;
     return word.trim() && transcription.trim() && translation.trim();
   };
 
@@ -97,7 +97,7 @@ function EditableRow(props) {
           placeholder="Enter"
           type="text"
           value={word}
-          onChange={(e) => addImputData(e)}
+          onChange={(e) => addInputData(e)}
           name="word"
           className={word.length ? "addWord" : "addWord-red"}
         />
@@ -107,7 +107,7 @@ function EditableRow(props) {
           placeholder="Enter"
           type="text"
           value={transcription}
-          onChange={(e) => addImputData(e)}
+          onChange={(e) => addInputData(e)}
           name="transcription"
           className={transcription.length ? "addWord" : "addWord-red"}
         />
@@ -117,7 +117,7 @@ function EditableRow(props) {
           placeholder="Enter"
           type="text"
           value={translation}
-          onChange={(e) => addImputData(e)}
+          onChange={(e) => addInputData(e)}
           name="translation"
           className={translation.length ? "addWord" : "addWord-red"}
         />
