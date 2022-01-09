@@ -41,6 +41,10 @@ function TableRow(props) {
   };
 
   const handleSave = () => {
+    if (!pressed) {
+      handleChange();
+      return;
+    }
     if (!onlyLatinCharacters(inputData.word)) {
       setErrors({ ...errors, word: "Введите слово на английском языке" });
       alert("Некоторые поля заполнены неправильно!");
@@ -88,7 +92,9 @@ function TableRow(props) {
           })
         )
         .then((data) => {
+          console.log(data);
           setInputData(data);
+          handleChange();
         })
         .catch((err) => console.log(err));
     }

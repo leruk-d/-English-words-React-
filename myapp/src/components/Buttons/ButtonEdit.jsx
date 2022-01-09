@@ -4,7 +4,7 @@ import "./ButtonEdit.scss";
 function ButtonEdit(props) {
   return (
     <button onClick={props.onClick} className="btn-edit">
-      {props.pressed === true ? "Cancel" : "Edit"}
+      {props.pressed === true ? "Save" : "Edit"}
     </button>
   );
 }
