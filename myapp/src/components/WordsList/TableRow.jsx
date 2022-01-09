@@ -8,15 +8,16 @@ function TableRow(props) {
 
   const [inputData, setInputData] = useState({
     id: props.id,
-    word: props.word,
+    english: props.word,
     transcription: props.transcription,
-    translation: props.translation,
+    russian: props.translation,
+    tags: [],
   });
 
   const [errors, setErrors] = useState({
-    word: false,
+    english: false,
     transcription: false,
-    translation: false,
+    russian: false,
   });
 
   const handleChange = () => {
@@ -30,7 +31,7 @@ function TableRow(props) {
     });
   };
 
-  const { id, word, transcription, translation } = inputData;
+  const { id, english, transcription, russian } = inputData;
 
   const onlyLatinCharacters = (value) => {
     return /^[a-zA-Z]+$/.test(value);
@@ -45,11 +46,11 @@ function TableRow(props) {
       handleChange();
       return;
     }
-    if (!onlyLatinCharacters(inputData.word)) {
-      setErrors({ ...errors, word: "Введите слово на английском языке" });
+    if (!onlyLatinCharacters(inputData.english)) {
+      setErrors({ ...errors, english: "Введите слово на английском языке" });
       alert("Некоторые поля заполнены неправильно!");
-    } else if (!onlyRussianCharacters(inputData.translation)) {
-      setErrors({ ...errors, translation: "Введите слово на русском языке" });
+    } else if (!onlyRussianCharacters(inputData.russian)) {
+      setErrors({ ...errors, russian: "Введите слово на русском языке" });
       alert("Некоторые поля заполнены неправильно!");
     } else {
       //     console.log(inputData.word);
@@ -69,12 +70,7 @@ function TableRow(props) {
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
-        body: JSON.stringify({
-          english: inputData.word,
-          russian: inputData.translation,
-          transcription: inputData.transcription,
-          tags: [],
-        }),
+        body: JSON.stringify(inputData),
       })
         .then((response) => {
           if (response.ok) {
@@ -123,7 +119,7 @@ function TableRow(props) {
             <input
               className="row-input"
               type="text"
-              value={word}
+              value={english}
               onChange={(e) => addInputData(e)}
               name="word"
             />
@@ -141,7 +137,7 @@ function TableRow(props) {
             <input
               className="row-input"
               type="text"
-              value={translation}
+              value={russian}
               onChange={(e) => addInputData(e)}
               name="translation"
             />
@@ -150,13 +146,13 @@ function TableRow(props) {
       ) : (
         <>
           <td className="row-word" onClick={handleChange}>
-            {inputData.word}
+            {inputData.english}
           </td>
           <td className="row-word" onClick={handleChange}>
             {inputData.transcription}
           </td>
           <td className="row-word" onClick={handleChange}>
-            {inputData.translation}
+            {inputData.russian}
           </td>
         </>
       )}
