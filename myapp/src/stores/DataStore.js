@@ -64,7 +64,7 @@ class DataStore {
           throw new Error("Something went wrong ...");
         }
       })
-      .then((response) => (this.data = this.data.filter((el) => el.id !== id)));
+      .then((response) => (this.data = this.data.filter((el) => el.id !== id))); //в случае успешного запроса нужно убрать элемент из массива
     this.isLoading = false;
   };
 

@@ -44,10 +44,6 @@ const TableRow = inject(["dataStore"])(
     };
 
     const handleSave = () => {
-      if (!pressed) {
-        handleChange();
-        return;
-      }
       if (!onlyLatinCharacters(inputData.word)) {
         setErrors({ ...errors, word: "Введите слово на английском языке" });
         alert("Некоторые поля заполнены неправильно!");
