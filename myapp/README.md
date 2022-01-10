@@ -4,22 +4,23 @@ You can easily add, correct, delete new words and track you progress.
 
 ### Project preview
 
+![Иллюстрация к проекту](https://github.com/leruk-d/-English-words-React-/raw/MobX/myapp/src/assets/
+EnglishWords2.png)
 ![Иллюстрация к проекту](https://github.com/leruk-d/-English-words-React-/raw/MobX/myapp/src/assets/EnglishWords.png)
 
 ## Techologies used
 
+- **React**
 
-+ **React**
+- **React Hooks**
 
-+ **React Hooks**
+- **MobX**
 
-+ **MobX**
+- **API**
 
-+ **API**
+- **HTTP requests**
 
-+ **HTTP requests**
-
-+ **SCSS**
+- **SCSS**
 
 ## To run the project
 
