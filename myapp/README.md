@@ -1,12 +1,12 @@
-# Приложение Language Cards
+# Language Cards App
 
 You can easily add, correct, delete new words and track you progress.
 
-### Предварительный просмотр проекта
+### Project preview
 
 ![Иллюстрация к проекту](https://github.com/leruk-d/-English-words-React-/raw/MobX/myapp/src/assets/EnglishWords.png)
 
-### Techologies used
+## Techologies used
 
 #### React
 
