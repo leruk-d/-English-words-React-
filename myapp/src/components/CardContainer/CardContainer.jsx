@@ -1,99 +1,77 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import Card from "../Card/Card";
 import ButtonPrevious from "../ButtonPrevious/ButtonPrevious";
 import ButtonNext from "../ButtonNext/ButtonNext";
 import "./CardContainer.scss";
+import { observer, inject } from "mobx-react";
+import Loading from "../Loading/Loading";
 
-const words = [
-  {
-    id: "peace",
-    english: "peace",
-    transcription: "[ piːs ]",
-    russian: "мир",
-    isTranslationShow: false,
-  },
-  {
-    id: "friendship",
-    english: "friendship",
-    transcription: "[ ˈfrendʃɪp ]",
-    russian: "дружба",
-    isTranslationShow: false,
-  },
+const CardContainer = inject(["dataStore"])(
+  observer(({ dataStore }) => {
+    const [selectedCardIndex, setSelectedCardIndex] = useState(0);
+    const [data, updateTranslationState] = useState(dataStore.data);
+    const [wordsCount, setWordsCount] = useState(0);
 
-  {
-    id: "gum",
-    english: "gum",
-    transcription: "[ ɡʌm ]",
-    russian: "жвачка",
-    isTranslationShow: false,
-  },
-];
+    const handleClickNext = () => {
+      const newIdx = selectedCardIndex + 1;
+      if (newIdx < dataStore.data.length) {
+        setSelectedCardIndex(newIdx);
+      }
+    };
 
-function CardContainer(props) {
-  const [selectedCardIndex, setSelectedCardIndex] = useState(0);
-  const [data, updateTranslationState] = useState(words);
-  const [wordsCount, setWordsCount] = useState(0);
+    const handleClickPrev = () => {
+      const newIndex = selectedCardIndex - 1;
+      if (newIndex >= 0) {
+        setSelectedCardIndex(newIndex);
+      }
+    };
 
-  const handleClickNext = () => {
-    const newIdx = selectedCardIndex + 1;
-    if (newIdx < words.length) {
-      setSelectedCardIndex(newIdx);
-    }
-  };
+    const addToWords = useCallback(
+      () => setWordsCount(wordsCount + 1),
+      [wordsCount]
+    );
 
-  const handleClickPrev = () => {
-    const newIndex = selectedCardIndex - 1;
-    if (newIndex >= 0) {
-      setSelectedCardIndex(newIndex);
-    }
-  };
+    const handleClickTranslation = (isTranslationShown) => {
+      const dataCopy = [...data];
+      dataCopy[selectedCardIndex].isTranslationShow =
+        !dataCopy[selectedCardIndex]?.isTranslationShow;
+      updateTranslationState(dataCopy);
+      if (!isTranslationShown) {
+        addToWords();
+      }
+    };
 
-  const addToWords = useCallback(
-    () => setWordsCount(wordsCount + 1),
-    [wordsCount]
-  );
+    if (!dataStore.data.length) return <Loading />;
 
-  const handleClickTranslation = (isTranslationShown) => {
-    const dataCopy = [...data];
-    dataCopy[selectedCardIndex].isTranslationShow =
-      !dataCopy[selectedCardIndex].isTranslationShow;
-    updateTranslationState(dataCopy);
-    if (!isTranslationShown) {
-      addToWords();
-    }
-  };
-
-  useEffect(() => {
-    console.log(words.length);
-  }, []);
-
-  return (
-    <div className="cardContainer">
-      <span className="wordsCount"> изучено {wordsCount} слов</span>
-      <div className="oneCard">
-        <ButtonPrevious
-          onClick={handleClickPrev}
-          disabled={selectedCardIndex === 0}
-        />
-        <Card
-          word={words[selectedCardIndex].english}
-          transcription={words[selectedCardIndex].transcription}
-          translation={words[selectedCardIndex].russian}
-          onClick={() =>
-            handleClickTranslation(data[selectedCardIndex].isTranslationShow)
-          }
-          isTranslationShown={data[selectedCardIndex].isTranslationShow}
-        ></Card>
-        <ButtonNext
-          onClick={handleClickNext}
-          disabled={selectedCardIndex === words.length - 1}
-        />
+    return (
+      <div className="cardContainer">
+        <span className="wordsCount"> изучено {wordsCount} слов</span>
+        <div className="oneCard">
+          <ButtonPrevious
+            onClick={handleClickPrev}
+            disabled={selectedCardIndex === 0}
+          />
+          <Card
+            word={dataStore.data[selectedCardIndex].english}
+            transcription={dataStore.data[selectedCardIndex].transcription}
+            translation={dataStore.data[selectedCardIndex].russian}
+            onClick={() =>
+              handleClickTranslation(data[selectedCardIndex]?.isTranslationShow)
+            }
+            isTranslationShown={data[selectedCardIndex]?.isTranslationShow}
+            //Надо везде добавить optional chaning(?), потому что карточек может не быть.
+          ></Card>
+          <ButtonNext
+            onClick={handleClickNext}
+            disabled={selectedCardIndex === dataStore.data.length - 1}
+          />
+        </div>
+        <span className="numberCard">
+          {selectedCardIndex + 1}/{dataStore.data.length}
+        </span>
       </div>
-      <span className="numberCard">
-        {selectedCardIndex + 1}/{words.length}
-      </span>
-    </div>
-  );
-}
+    );
+  })
+);
 
 export default CardContainer;

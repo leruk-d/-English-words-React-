@@ -1,12 +1,13 @@
 .cardContainer {
+  margin: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
- .wordsCount{
-  padding: 10px;
-  background-color: #f8f8fa;
-  border-radius: 9%;
-  color: #883a94;
+  .wordsCount {
+    padding: 10px;
+    background-color: #f8f8fa;
+    border-radius: 9%;
+    color: #883a94;
   }
   .oneCard {
     display: flex;
@@ -17,5 +18,8 @@
     background-color: #f8f8fa;
     border-radius: 9%;
     color: #883a94;
+  }
+  @media (max-width: 600px) {
+    padding-top: 5em;
   }
 }

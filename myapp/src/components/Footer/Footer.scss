@@ -11,5 +11,9 @@
   }
   .text {
     padding-right: 90px;
+    padding-left: 90px;
+  }
+  @media (max-width: 600px) {
+    display: flex;
   }
 }
