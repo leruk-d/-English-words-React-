@@ -8,25 +8,34 @@ You can easily add, correct, delete new words and track you progress.
 
 ## Techologies used
 
-#### React
 
-#### React Hooks
++ **React**
 
-#### MobX
++ **React Hooks**
 
-#### API
++ **MobX**
 
-#### HTTP requests
++ **API**
 
-#### SCSS
++ **HTTP requests**
+
++ **SCSS**
 
 ## To run the project
 
 Clone repo
 
-`https://github.com/leruk-d/-English-words-React-.git`
+```
+https://github.com/leruk-d/-English-words-React-.git
+```
+
 In the project directory, you can run:
 
-`npm install`
-`npm start`
-Runs the app in the development mode. Open http://localhost:3000 to view it in the browser.
+```
+npm install
+npm start
+```
+
+Runs the app in the development mode.
+
+Open http://localhost:3000 to view it in the browser.
