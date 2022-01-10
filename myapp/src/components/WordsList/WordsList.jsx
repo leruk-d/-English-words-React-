@@ -4,18 +4,6 @@ import TableRow from "./TableRow";
 import EditableRow from "./EditableRow";
 import { observer, inject } from "mobx-react";
 
-// let words = [
-//   { id: "peace", english: "peace", transcription: "[ piːs ]", russian: "мир" },
-//   {
-//     id: "friendship",
-//     english: "friendship",
-//     transcription: "[ ˈfrendʃɪp ]",
-//     russian: "дружба",
-//   },
-
-//   { id: "gum", english: "gum", transcription: "[ ɡʌm ]", russian: "жвачка" },
-// ];
-
 const WordList = inject(["dataStore"])(
   observer(({ dataStore }) => {
     return (
