@@ -34,7 +34,7 @@ const CardContainer = inject(["dataStore"])(
     const handleClickTranslation = (isTranslationShown) => {
       const dataCopy = [...data];
       dataCopy[selectedCardIndex].isTranslationShow =
-        !dataCopy[selectedCardIndex].isTranslationShow;
+        !dataCopy[selectedCardIndex]?.isTranslationShow;
       updateTranslationState(dataCopy);
       if (!isTranslationShown) {
         addToWords();
