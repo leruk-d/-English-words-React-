@@ -53,6 +53,12 @@ const EditableRow = inject(["dataStore"])(
       }
     };
 
+    const handleDelete = () =>
+      setInputData({
+        word: " ",
+        translation: " ",
+        transcription: "",
+      });
     const validate = () => {
       const { word, transcription, translation } = inputData;
       return word.trim() && transcription.trim() && translation.trim();
@@ -93,7 +99,7 @@ const EditableRow = inject(["dataStore"])(
         <td>
           <div className="buttons">
             <ButtonAdd disabled={!validate()} save={handleSave} />
-            <ButtonDel />
+            <ButtonDel onClick={handleDelete} />
           </div>
         </td>
       </tr>
