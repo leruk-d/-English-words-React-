@@ -4,8 +4,8 @@ You can easily add, correct, delete new words and track you progress.
 
 ### Project preview
 
-![Иллюстрация к проекту](https://github.com/leruk-d/-English-words-React-/raw/MobX/myapp/src/assets/EnglishWords2.png)
-![Иллюстрация к проекту](https://github.com/leruk-d/-English-words-React-/raw/MobX/myapp/src/assets/EnglishWords.png)
+![Иллюстрация к проекту](https://github.com/leruk-d/-English-words-React-/raw/main/myapp/src/assets/EnglishWords2.png)
+![Иллюстрация к проекту](https://github.com/leruk-d/-English-words-React-/raw/main/myapp/src/assets/EnglishWords.png)
 
 ## Techologies used
 
